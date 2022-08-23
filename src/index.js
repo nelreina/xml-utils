@@ -1,6 +1,6 @@
-import xml2js from "xml2js";
+const xml2js = require("xml2js");
 
-export const parseXML = (xml) =>
+const parseXML = (xml) =>
   new Promise((resolve, reject) => {
     const parser = new xml2js.Parser({ explicitArray: false });
     parser.parseString(xml, function (err, result) {
@@ -13,7 +13,12 @@ export const parseXML = (xml) =>
     });
   });
 
-export const buildXML = (json) => {
+const buildXML = (json) => {
   const builder = new xml2js.Builder();
   return builder.buildObject(json);
+};
+
+module.exports = {
+  parseXML,
+  buildXML,
 };
